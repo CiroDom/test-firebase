@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">Test Firebase Stack Mobile</string>
+    
+    <string name="title_form_sign_in">Cadastre-se</string>
+    <string name="hint_email">E-mail</string>
+    <string name="hint_passw">Senha</string>
+    <string name="button_sign_in">Cadastrar</string>
+    <string name="snackbar_blank_sign_in">Preencha todos os campos</string>
+    <string name="snackbar_sucess_sign_in">Cadastro efetuado com sucesso</string>
+    <string name="snackbar_fail_weakpassw_sign_in">"Senha mínima de 6 caracteres</string>
+    <string name="snackbar_fail_invalid_credential_sign_in">E-mail inválido</string>
+    <string name="snackbar_fail_collision_sign_in">Conta já cadastrada</string>
+    <string name="snackbar_fail_conection_sign_in">Conexão indisponível</string>
+    <string name="snackbar_fail_generic_sign_in">Erro desconhecido</string>
+</resources>

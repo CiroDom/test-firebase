@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1025059691024",
+    "project_id": "fir-test-stack-mobile",
+    "storage_bucket": "fir-test-stack-mobile.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1025059691024:android:6c02029bd9e065f57f0895",
+        "android_client_info": {
+          "package_name": "com.example.testfirebasestackmobile"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA3iJ58Yv4VASp2IpC5OMw4DHc4BXOX0E0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
