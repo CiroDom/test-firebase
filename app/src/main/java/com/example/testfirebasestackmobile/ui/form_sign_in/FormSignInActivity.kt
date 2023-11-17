@@ -44,32 +44,29 @@ class FormSignInActivity : AppCompatActivity() {
             }
 
             if (email.isBlank() || passw.isBlank()) {
-                showSnackBar(
-                    R.string.snackbar_blank_sign_in,
-                    true
-                )
+                showSnackBar(R.string.snackbar_blank, true)
             } else {
                 auth.createUserWithEmailAndPassword(email.toString(), passw.toString())
                     .addOnCompleteListener { signIn ->
                         if (signIn.isSuccessful ) {
-                            showSnackBar(
-                                R.string.snackbar_sucess_sign_in,
-                                false)
+                            showSnackBar(R.string.snackbar_sucess_sign_in, false)
+
+                            with(binding) {
+                                signInEditEmail.text.clear()
+                                signInEditPassw.text.clear()
+                            }
                         }
                     }
                     .addOnFailureListener { exception ->
                         val errorMsgInt = when (exception) {
                             is FirebaseAuthWeakPasswordException -> R.string.snackbar_fail_weakpassw_sign_in
-                            is FirebaseAuthInvalidCredentialsException -> R.string.snackbar_fail_invalid_credential_sign_in
+                            is FirebaseAuthInvalidCredentialsException -> R.string.snackbar_fail_invalid_credential
                             is FirebaseAuthUserCollisionException -> R.string.snackbar_fail_collision_sign_in
-                            is FirebaseNetworkException -> R.string.snackbar_fail_conection_sign_in
-                            else -> R.string.snackbar_fail_generic_sign_in
+                            is FirebaseNetworkException -> R.string.snackbar_fail_conection
+                            else -> R.string.snackbar_fail_generic
                         }
 
-                        showSnackBar(
-                            errorMsgInt,
-                            true
-                        )
+                        showSnackBar(errorMsgInt, true)
                     }
             }
         }
