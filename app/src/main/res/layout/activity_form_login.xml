@@ -32,7 +32,17 @@
 
     <TextView android:id="@+id/login_txt_no_acc"
         style="@style/Theme.TestFirebaseStackMobile.TextNoAcc"
-        android:text="@string/txt_no_acc_sig_in"/>
+        android:text="@string/txt_no_acc"/>
 
+    <TextView android:id="@+id/login_txt_forget_passw"
+        style="@style/Theme.TestFirebaseStackMobile.ForgetPassw"
+        android:text="@string/txt_forgot_passw"/>
+
+    <com.google.android.gms.common.SignInButton
+        android:id="@+id/login_button_signin_google"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_gravity="center"/>
 
 </LinearLayout>

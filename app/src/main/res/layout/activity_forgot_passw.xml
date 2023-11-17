@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingStart="16dp"
+    android:paddingEnd="16dp"
+    android:orientation="vertical"
+    android:background="@color/light_gray">
+
+    <EditText android:id="@+id/forgot_edit_email"
+        style="@style/Theme.TestFirebaseStackMobile.SignIn.Edit"
+        android:layout_marginTop="50dp"
+        android:inputType="textWebEmailAddress"
+        android:hint="@string/hint_email"/>
+
+    <Button android:id="@+id/forgot_button_next"
+        style="@style/Theme.TestFirebaseStackMobile.SignIn.Button"
+        android:text="@string/button_forgot"/>
+
+</LinearLayout>

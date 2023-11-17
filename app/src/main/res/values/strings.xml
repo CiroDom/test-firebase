@@ -9,8 +9,11 @@
 
     <string name="button_sign_in">Cadastrar</string>
     <string name="button_login">Entrar</string>
+    <string name="button_exit">Sair</string>
+    <string name="button_forgot">Recuperar senha</string>
 
-    <string name="txt_no_acc_sig_in">Não tem uma conta? Cadastre-se</string>
+    <string name="txt_no_acc">Não tem uma conta? Cadastre-se</string>
+    <string name="txt_forgot_passw">Esqueceu sua senha?</string>
 
     <string name="snackbar_blank">Preencha todos os campos</string>
     <string name="snackbar_sucess_sign_in">Cadastro efetuado com sucesso</string>
@@ -20,5 +23,7 @@
     <string name="snackbar_fail_conection">Conexão indisponível</string>
     <string name="snackbar_fail_generic">Erro desconhecido</string>
     <string name="snackbar_fail_generic_auth">Erro na autenticação</string>
+    <string name="snackbar_check_email">Verifique seu e-mail</string>
+    <string name="snackbar_fail_generic_forgot">Erro ao recuperar senha</string>
 
 </resources>

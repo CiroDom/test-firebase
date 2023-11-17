@@ -15,6 +15,9 @@
         android:theme="@style/Theme.TestFirebaseStackMobile"
         tools:targetApi="31">
         <activity
+            android:name=".ui.forgot_passw.ForgotPasswActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.main_view.MainViewActivity"
             android:exported="false" />
         <activity
@@ -28,7 +31,7 @@
         </activity>
         <activity
             android:name=".ui.form_sign_in.FormSignInActivity"
-            android:exported="true"></activity>
+            android:exported="true" />
     </application>
 
 </manifest>
