@@ -1,4 +1,4 @@
-package com.example.testfirebasestackmobile.ui.form_sign_in
+package com.example.testfirebasestackmobile.ui.form_signup
 
 import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
@@ -12,7 +12,7 @@ import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException
 import com.google.firebase.auth.FirebaseAuthUserCollisionException
 import com.google.firebase.auth.FirebaseAuthWeakPasswordException
 
-class FormSignInActivity : AppCompatActivity() {
+class FormSignupActivity : AppCompatActivity() {
 
     private val binding by lazy {
         ActivityFormSignInBinding.inflate(layoutInflater)

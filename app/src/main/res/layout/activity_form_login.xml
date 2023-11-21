@@ -8,7 +8,7 @@
     android:paddingEnd="16dp"
     android:orientation="vertical"
     android:background="@color/light_gray"
-    tools:context=".ui.form_sign_in.FormSignInActivity">
+    tools:context=".ui.form_signup.FormSignupActivity">
 
 
     <TextView android:id="@+id/login_txt_head"

@@ -30,7 +30,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".ui.form_sign_in.FormSignInActivity"
+            android:name=".ui.form_signup.FormSignupActivity"
             android:exported="true" />
     </application>
 

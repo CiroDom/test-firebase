@@ -4,17 +4,21 @@ import android.content.Intent
 import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.activity.result.contract.ActivityResultContracts
 import com.example.testfirebasestackmobile.R
 import com.example.testfirebasestackmobile.databinding.ActivityFormLoginBinding
 import com.example.testfirebasestackmobile.databinding.ActivityMainViewBinding
 import com.example.testfirebasestackmobile.ui.forgot_passw.ForgotPasswActivity
-import com.example.testfirebasestackmobile.ui.form_sign_in.FormSignInActivity
 import com.example.testfirebasestackmobile.ui.main_view.MainViewActivity
+import com.google.android.gms.auth.api.signin.GoogleSignIn
+import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
+import com.google.android.gms.common.api.ApiException
 import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.FirebaseNetworkException
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException
+import com.google.firebase.auth.GoogleAuthProvider
 
 class FormLoginActivity : AppCompatActivity() {
 
@@ -24,9 +28,24 @@ class FormLoginActivity : AppCompatActivity() {
 
     private val auth = FirebaseAuth.getInstance()
 
+    private lateinit var loginGoogleClient: GoogleSignInClient
+
+    private val googleLoginResult = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+
+        if (result.resultCode == requestedOrientation) {
+            val task = GoogleSignIn.getSignedInAccountFromIntent(result.data)
+            val account = task.getResult(ApiException::class.java)
+
+            userGoogleAuthenticate(account.idToken!!)
+        }
+
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
+
+        googleSigninOptions()
 
         with(binding) {
             loginButtonNext.setOnClickListener{ button ->
@@ -77,7 +96,7 @@ class FormLoginActivity : AppCompatActivity() {
             }
 
             loginButtonSigninGoogle.setOnClickListener {
-
+                loginGoogle()
             }
         }
 
@@ -100,7 +119,29 @@ class FormLoginActivity : AppCompatActivity() {
     }
 
     private fun googleSigninOptions() {
-        val googleSigninOpt = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-        googleSigninOpt.requestIdToken()
+        val googleSigninOpt =
+            GoogleSignInOptions
+            .Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+            .requestIdToken(getString(R.string.oauth_client))
+            .requestEmail()
+            .build()
+
+        loginGoogleClient = GoogleSignIn.getClient(this, googleSigninOpt)
+    }
+
+    private fun loginGoogle() {
+        val intent = loginGoogleClient.signInIntent
+
+        googleLoginResult.launch(intent)
+    }
+
+    private fun userGoogleAuthenticate(idToken: String) {
+        val credential = GoogleAuthProvider.getCredential(idToken, null)
+
+        auth.signInWithCredential(credential).addOnCompleteListener { authentication ->
+            if (authentication.isSuccessful) {
+                goToAnotherView(MainViewActivity::class.java)
+            }
+        }
     }
 }

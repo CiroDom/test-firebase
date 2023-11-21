@@ -8,25 +8,25 @@
     android:paddingEnd="16dp"
     android:orientation="vertical"
     android:background="@color/light_gray"
-    tools:context=".ui.form_sign_in.FormSignInActivity">
+    tools:context=".ui.form_signup.FormSignupActivity">
 
 
-    <TextView android:id="@+id/sign_in_txt_head"
+    <TextView android:id="@+id/signup_txt_head"
         style="@style/Theme.TestFirebaseStackMobile.SignIn.Txt"
         android:layout_marginTop="120dp"
         android:text="@string/title_form_sign_in"/>
 
-    <EditText android:id="@+id/sign_in_edit_email"
+    <EditText android:id="@+id/signup_edit_email"
         style="@style/Theme.TestFirebaseStackMobile.SignIn.Edit"
         android:inputType="textWebEmailAddress"
         android:hint="@string/hint_email"/>
 
-    <EditText android:id="@+id/sign_in_edit_passw"
+    <EditText android:id="@+id/signup_edit_passw"
         style="@style/Theme.TestFirebaseStackMobile.SignIn.Edit"
         android:inputType="textPassword"
         android:hint="@string/hint_passw"/>
 
-    <Button android:id="@+id/sign_in_button_next"
+    <Button android:id="@+id/signup_button_next"
         style="@style/Theme.TestFirebaseStackMobile.SignIn.Button"
         android:text="@string/button_sign_in"/>
 
