@@ -15,13 +15,13 @@
         android:theme="@style/Theme.TestFirebaseStackMobile"
         tools:targetApi="31">
         <activity
-            android:name=".ui.forgot_passw.ForgotPasswActivity"
+            android:name=".ui.activities.ForgotPasswActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.main_view.MainViewActivity"
+            android:name=".ui.activities.MainViewActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.form_login.FormLoginActivity"
+            android:name=".ui.activities.FormLoginActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -30,7 +30,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".ui.form_signup.FormSignupActivity"
+            android:name=".ui.activities.FormSignupActivity"
             android:exported="true" />
     </application>
 

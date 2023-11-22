@@ -1,11 +1,9 @@
-package com.example.testfirebasestackmobile.ui.main_view
+package com.example.testfirebasestackmobile.ui.activities
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.example.testfirebasestackmobile.R
 import com.example.testfirebasestackmobile.databinding.ActivityMainViewBinding
-import com.example.testfirebasestackmobile.ui.form_login.FormLoginActivity
 import com.google.firebase.auth.FirebaseAuth
 
 class MainViewActivity : AppCompatActivity() {

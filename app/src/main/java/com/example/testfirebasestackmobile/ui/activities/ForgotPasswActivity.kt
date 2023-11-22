@@ -1,4 +1,4 @@
-package com.example.testfirebasestackmobile.ui.forgot_passw
+package com.example.testfirebasestackmobile.ui.activities
 
 import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity

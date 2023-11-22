@@ -1,15 +1,16 @@
-package com.example.testfirebasestackmobile.ui.form_login
+package com.example.testfirebasestackmobile.ui.activities
 
 import android.content.Intent
 import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import androidx.activity.result.contract.ActivityResultContracts
 import com.example.testfirebasestackmobile.R
 import com.example.testfirebasestackmobile.databinding.ActivityFormLoginBinding
 import com.example.testfirebasestackmobile.databinding.ActivityMainViewBinding
-import com.example.testfirebasestackmobile.ui.forgot_passw.ForgotPasswActivity
-import com.example.testfirebasestackmobile.ui.main_view.MainViewActivity
+import com.example.testfirebasestackmobile.ui.dialog.LoadingDialog
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
@@ -41,6 +42,8 @@ class FormLoginActivity : AppCompatActivity() {
 
     }
 
+    private val dialog = LoadingDialog(this)
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
@@ -71,11 +74,7 @@ class FormLoginActivity : AppCompatActivity() {
                     .signInWithEmailAndPassword(email.toString(), passw.toString())
                     .addOnCompleteListener { authentication ->
                         if (authentication.isSuccessful) {
-                            val intent = Intent(
-                                this@FormLoginActivity,
-                                MainViewActivity::class.java)
-                            startActivity(intent)
-                            finish()
+                            goToAnotherView(MainViewActivity::class.java)
                         }
                     }.addOnFailureListener { exception ->
                         val errorMsgInt = when (exception) {
@@ -113,9 +112,15 @@ class FormLoginActivity : AppCompatActivity() {
     }
 
     private fun goToAnotherView(destiny: Class<*>) {
-        val intent = Intent(this@FormLoginActivity, destiny)
-        startActivity(intent)
-        finish()
+        dialog.showAlertDialog()
+
+        Handler(Looper.getMainLooper()).postDelayed({
+            dialog.dismissAlertDialog()
+
+            val intent = Intent(this@FormLoginActivity, destiny)
+            startActivity(intent)
+            finish()
+        }, 3000)
     }
 
     private fun googleSigninOptions() {

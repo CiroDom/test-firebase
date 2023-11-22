@@ -1,4 +1,4 @@
-package com.example.testfirebasestackmobile.ui.form_signup
+package com.example.testfirebasestackmobile.ui.activities
 
 import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
