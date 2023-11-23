@@ -13,7 +13,7 @@
         android:paddingEnd="16dp"
         android:orientation="vertical"
         android:background="@color/light_gray"
-        tools:context=".ui.activities.FormSignupActivity">
+        tools:context=".ui.activities.FormSignInActivity">
 
 
         <TextView android:id="@+id/login_txt_head"
@@ -47,7 +47,7 @@
             android:id="@+id/login_button_signin_google"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="16dp"
             android:layout_gravity="center"/>
 
     </LinearLayout>

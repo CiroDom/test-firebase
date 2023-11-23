@@ -9,6 +9,7 @@ import android.os.Looper
 import androidx.activity.result.contract.ActivityResultContracts
 import com.example.testfirebasestackmobile.R
 import com.example.testfirebasestackmobile.databinding.ActivityFormLoginBinding
+import com.example.testfirebasestackmobile.databinding.ActivityFormSignInBinding
 import com.example.testfirebasestackmobile.databinding.ActivityMainViewBinding
 import com.example.testfirebasestackmobile.ui.dialog.LoadingDialog
 import com.google.android.gms.auth.api.signin.GoogleSignIn
@@ -87,7 +88,7 @@ class FormLoginActivity : AppCompatActivity() {
             }
 
             loginTxtNoAcc.setOnClickListener {
-                goToAnotherView(ActivityMainViewBinding::class.java)
+                goToAnotherView(FormSignInActivity::class.java)
             }
 
             loginTxtForgetPassw.setOnClickListener {
@@ -107,7 +108,7 @@ class FormLoginActivity : AppCompatActivity() {
         val currentUser = FirebaseAuth.getInstance().currentUser
 
         if (currentUser != null) {
-            goToAnotherView(ActivityMainViewBinding::class.java)
+            goToAnotherView(MainViewActivity::class.java)
         }
     }
 
@@ -119,8 +120,7 @@ class FormLoginActivity : AppCompatActivity() {
 
             val intent = Intent(this@FormLoginActivity, destiny)
             startActivity(intent)
-            finish()
-        }, 3000)
+        }, 500)
     }
 
     private fun googleSigninOptions() {

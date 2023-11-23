@@ -12,7 +12,7 @@ import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException
 import com.google.firebase.auth.FirebaseAuthUserCollisionException
 import com.google.firebase.auth.FirebaseAuthWeakPasswordException
 
-class FormSignupActivity : AppCompatActivity() {
+class FormSignInActivity : AppCompatActivity() {
 
     private val binding by lazy {
         ActivityFormSignInBinding.inflate(layoutInflater)
@@ -24,10 +24,10 @@ class FormSignupActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
-        val btnSignIn = binding.signInButtonNext
+        val btnSignIn = binding.signinButtonNext
         btnSignIn.setOnClickListener { button ->
-            val email = binding.signInEditEmail.text
-            val passw = binding.signInEditPassw.text
+            val email = binding.signinEditEmail.text
+            val passw = binding.signinEditPassw.text
 
             fun showSnackBar(getString: Int, warning: Boolean) {
                 val color = if (warning) Color.RED else Color.GREEN
@@ -52,8 +52,8 @@ class FormSignupActivity : AppCompatActivity() {
                             showSnackBar(R.string.snackbar_sucess_sign_in, false)
 
                             with(binding) {
-                                signInEditEmail.text.clear()
-                                signInEditPassw.text.clear()
+                                signinEditEmail.text.clear()
+                                signinEditPassw.text.clear()
                             }
                         }
                     }
