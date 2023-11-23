@@ -8,8 +8,8 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
-import android.view.View
 import android.view.inputmethod.InputMethodManager
+import android.widget.EditText
 import androidx.activity.result.contract.ActivityResultContracts
 import com.example.testfirebasestackmobile.R
 import com.example.testfirebasestackmobile.databinding.ActivityFormLoginBinding
@@ -106,13 +106,13 @@ class FormLoginActivity : AppCompatActivity() {
             }
 
             loginLinlayParent.setOnClickListener {
-                fun hideKeyboard(editText: View) {
-                    val outRect = Rect()
+                fun hideKeyboard(editText: EditText) {
+                    val rect = Rect()
 
-                    editText.getGlobalVisibleRect(outRect)
+                    editText.getGlobalVisibleRect(rect)
 
                     if (
-                        !outRect.contains(editText.x.toInt(), editText.y.toInt())
+                        !rect.contains(editText.x.toInt(), editText.y.toInt())
                     ) {
                         val inputMethodManager =
                             getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
@@ -122,7 +122,8 @@ class FormLoginActivity : AppCompatActivity() {
 
                 if (editEmail.isFocused) {
                     hideKeyboard(editEmail)
-                } else if (editPassw.isFocused) {
+                }
+                else if (editPassw.isFocused) {
                     hideKeyboard(editPassw)
                 }
             }

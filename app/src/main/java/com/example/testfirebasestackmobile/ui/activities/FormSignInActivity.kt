@@ -5,8 +5,8 @@ import android.graphics.Color
 import android.graphics.Rect
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.View
 import android.view.inputmethod.InputMethodManager
+import android.widget.EditText
 import com.example.testfirebasestackmobile.R
 import com.example.testfirebasestackmobile.databinding.ActivityFormSignInBinding
 import com.google.android.material.snackbar.Snackbar
@@ -76,13 +76,13 @@ class FormSignInActivity : AppCompatActivity() {
             }
 
             signinLinlayParent.setOnClickListener {
-                fun hideKeyboard(editText: View) {
-                    val outRect = Rect()
+                fun hideKeyboard(editText: EditText) {
+                    val rect = Rect()
 
-                    editText.getGlobalVisibleRect(outRect)
+                    editText.getGlobalVisibleRect(rect)
 
                     if (
-                        !outRect.contains(editText.x.toInt(), editText.y.toInt())
+                        !rect.contains(editText.x.toInt(), editText.y.toInt())
                     ) {
                         val inputMethodManager =
                             getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
@@ -95,7 +95,8 @@ class FormSignInActivity : AppCompatActivity() {
 
                 if (editEmail.isFocused) {
                     hideKeyboard(editEmail)
-                } else if (editPassw.isFocused) {
+                }
+                else if (editPassw.isFocused) {
                     hideKeyboard(editPassw)
                 }
             }
