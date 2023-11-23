@@ -1,16 +1,18 @@
 package com.example.testfirebasestackmobile.ui.activities
 
+import android.content.Context
 import android.content.Intent
 import android.graphics.Color
+import android.graphics.Rect
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
+import android.view.View
+import android.view.inputmethod.InputMethodManager
 import androidx.activity.result.contract.ActivityResultContracts
 import com.example.testfirebasestackmobile.R
 import com.example.testfirebasestackmobile.databinding.ActivityFormLoginBinding
-import com.example.testfirebasestackmobile.databinding.ActivityFormSignInBinding
-import com.example.testfirebasestackmobile.databinding.ActivityMainViewBinding
 import com.example.testfirebasestackmobile.ui.dialog.LoadingDialog
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
@@ -52,12 +54,16 @@ class FormLoginActivity : AppCompatActivity() {
         googleSigninOptions()
 
         with(binding) {
-            loginButtonNext.setOnClickListener{ button ->
-                val email = binding.loginEditEmail.text
-                val passw = binding.loginEditPassw.text
+            val editEmail = binding.loginEditEmail
+            val editPassw = binding.loginEditPassw
+
+            loginButtonNext.setOnClickListener { button ->
+                val email = editEmail.text
+                val passw = editPassw.text
 
                 fun showErrorSnackBar(getString: Int) {
-                    val snackBar = Snackbar.make(button, getString(getString), Snackbar.LENGTH_SHORT)
+                    val snackBar =
+                        Snackbar.make(button, getString(getString), Snackbar.LENGTH_SHORT)
 
                     with(snackBar) {
                         setBackgroundTint(Color.RED)
@@ -98,8 +104,29 @@ class FormLoginActivity : AppCompatActivity() {
             loginButtonSigninGoogle.setOnClickListener {
                 loginGoogle()
             }
-        }
 
+            loginLinlayParent.setOnClickListener {
+                fun hideKeyboard(editText: View) {
+                    val outRect = Rect()
+
+                    editText.getGlobalVisibleRect(outRect)
+
+                    if (
+                        !outRect.contains(editText.x.toInt(), editText.y.toInt())
+                    ) {
+                        val inputMethodManager =
+                            getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+                        inputMethodManager.hideSoftInputFromWindow(editText.windowToken, 0)
+                    }
+                }
+
+                if (editEmail.isFocused) {
+                    hideKeyboard(editEmail)
+                } else if (editPassw.isFocused) {
+                    hideKeyboard(editPassw)
+                }
+            }
+        }
     }
 
     override fun onStart() {
