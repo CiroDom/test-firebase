@@ -6,34 +6,23 @@
     android:layout_height="match_parent"
     android:fillViewport="true">
 
-    <LinearLayout android:id="@+id/signin_linlay_parent"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingStart="16dp"
-        android:paddingEnd="16dp"
-        android:orientation="vertical"
+        android:paddingHorizontal="16dp"
         android:background="@color/light_gray"
-        tools:context=".ui.activities.FormSignInActivity">
+        android:orientation="vertical">
 
+        <include android:id="@+id/include_header"
+            layout="@layout/header_sign_in"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
 
-        <TextView android:id="@+id/signin_txt_head"
-            style="@style/Theme.TestFirebaseStackMobile.SignIn.Txt"
-            android:layout_marginTop="120dp"
-            android:text="@string/title_form_sign_in"/>
+        <include android:id="@+id/include_frag_host"
+            layout="@layout/sign_in_frag_host"
+            app:layout_constraintTop_toBottomOf="@id/include_header"/>
 
-        <EditText android:id="@+id/signin_edit_email"
-            style="@style/Theme.TestFirebaseStackMobile.SignIn.Edit"
-            android:inputType="textWebEmailAddress"
-            android:hint="@string/hint_email"/>
-
-        <EditText android:id="@+id/signin_edit_passw"
-            style="@style/Theme.TestFirebaseStackMobile.SignIn.Edit"
-            android:inputType="textPassword"
-            android:hint="@string/hint_passw"/>
-
-        <Button android:id="@+id/signin_button_next"
-            style="@style/Theme.TestFirebaseStackMobile.SignIn.Button"
-            android:text="@string/button_sign_in"/>
 
     </LinearLayout>
 
