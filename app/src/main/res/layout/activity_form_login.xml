@@ -14,7 +14,6 @@
         android:orientation="vertical"
         android:background="@color/light_gray">
 
-
         <TextView android:id="@+id/login_txt_head"
             style="@style/Theme.TestFirebaseStackMobile.SignIn.Txt"
             android:layout_marginTop="120dp"
@@ -50,5 +49,6 @@
             android:layout_gravity="center"/>
 
     </LinearLayout>
+
 
 </ScrollView>

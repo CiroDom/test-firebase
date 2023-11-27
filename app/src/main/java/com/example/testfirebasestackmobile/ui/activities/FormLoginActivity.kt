@@ -105,7 +105,6 @@ class FormLoginActivity : AppCompatActivity() {
             }
 
             loginLinlayParent.setOnClickListener {
-                Log.i("Login", "chegou")
                 fun hideKeyboard(editText: EditText) {
                     val rect = Rect()
 

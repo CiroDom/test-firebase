@@ -25,6 +25,8 @@ class FormSignInActivity : AppCompatActivity() {
         val parentLay = binding.singInLinlayParent
 
         val personFragLay = FragPersonBinding.inflate(layoutInflater)
+        val editFName = personFragLay.fragpersonEditFirstname
+        val editSName = personFragLay.fragpersonEditSecondname
 
         parentLay.setOnClickListener {
             fun hideKeyboard(editText: EditText) {
@@ -41,8 +43,11 @@ class FormSignInActivity : AppCompatActivity() {
                 }
             }
 
-            if (personFragLay.fragpersonEditFirstname.isFocused) {
-                hideKeyboard(personFragLay.fragpersonEditFirstname)
+            if (editFName.isFocused) {
+                hideKeyboard(editFName)
+            }
+            else if (editSName.isFocused) {
+                hideKeyboard(editSName)
             }
         }
     }
