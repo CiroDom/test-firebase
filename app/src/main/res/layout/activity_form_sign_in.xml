@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:fillViewport="true">
 
-    <LinearLayout
+    <LinearLayout android:id="@+id/sing_in_linlay_parent"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingHorizontal="16dp"
@@ -22,7 +22,6 @@
         <include android:id="@+id/include_frag_host"
             layout="@layout/sign_in_frag_host"
             app:layout_constraintTop_toBottomOf="@id/include_header"/>
-
 
     </LinearLayout>
 

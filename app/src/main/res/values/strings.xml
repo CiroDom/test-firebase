@@ -3,6 +3,7 @@
     <string name="oauth_client">1025059691024-s65vsl9t1ks0cejiprc8o7e71k3ekkap.apps.googleusercontent.com</string>
 
     <string name="title_form_sign_in">Cadastre-se</string>
+    <string name="title_form_sign_in_ratio">X/2</string>
     <string name="title_form_login">Login do usuário</string>
 
     <string name="hint_email">E-mail</string>
@@ -30,9 +31,8 @@
     <string name="snackbar_fail_generic_auth">Erro na autenticação</string>
     <string name="snackbar_check_email">Verifique seu e-mail</string>
     <string name="snackbar_fail_generic_forgot">Erro ao recuperar senha</string>
+    <string name="snackbar_fail_personal_data">Erro ao enviar dados pessoais</string>
 
     <string name="dialog_text_loading">Carregando</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 </resources>

@@ -8,9 +8,11 @@ import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
 import com.example.testfirebasestackmobile.R
 import com.example.testfirebasestackmobile.core.helpers.BlankBarrier
+import com.example.testfirebasestackmobile.core.helpers.KeyboardHider
 import com.example.testfirebasestackmobile.core.helpers.OurSnackBar
 import com.example.testfirebasestackmobile.core.singletons.Auth
 import com.example.testfirebasestackmobile.core.singletons.Auth.auth
+import com.example.testfirebasestackmobile.core.singletons.ConstRepo
 import com.example.testfirebasestackmobile.core.singletons.Database
 import com.example.testfirebasestackmobile.core.singletons.Database.db
 import com.example.testfirebasestackmobile.databinding.FragAccountBinding
@@ -45,12 +47,38 @@ class AccountFrag : Fragment() {
 
                 fun authenticate() {
                     auth.createUserWithEmailAndPassword(email.toString(), passw.toString())
-                        .addOnCompleteListener { signIn ->
-                            if (signIn.isSuccessful) {
-                                val firstName = arguments?.getString(PersonFrag.FIRST_NAME_KEY)
-                                val secondName = arguments?.getString(PersonFrag.SECOND_NAME_KEY)
+                        .addOnCompleteListener { createUserTask ->
+                            if (createUserTask.isSuccessful) {
+                                val ourSnackBar = OurSnackBar()
+                                ourSnackBar.show(
+                                    requireContext(),
+                                    button,
+                                    R.string.snackbar_sucess_sign_in,
+                                    false
+                                )
 
+                                val user = createUserTask.result.user
+                                val firstName = arguments?.getString(ConstRepo.FIRST_NAME_KEY)
+                                val secondName = arguments?.getString(ConstRepo.SECOND_NAME_KEY)
+                                val personalData = mapOf(
+                                    ConstRepo.FIRST_NAME_KEY to firstName,
+                                    ConstRepo.SECOND_NAME_KEY to secondName
+                                )
 
+                                db.collection(ConstRepo.USER_COLLECTION_KEY)
+                                    .document(user?.uid ?: "")
+                                    .set(personalData)
+                                    .addOnFailureListener {
+                                        ourSnackBar.show(
+                                            requireContext(),
+                                            button,
+                                            R.string.snackbar_fail_personal_data,
+                                            true,
+                                        )
+                                    }
+
+                                val navController = findNavController()
+                                navController.navigate(R.id.nav_act_person_to_account)
                             }
                         }
                         .addOnFailureListener { exception ->
@@ -84,6 +112,9 @@ class AccountFrag : Fragment() {
                     authenticate()
                 }
             }
+
+            val keyboardHider = KeyboardHider()
+            keyboardHider.use(requireContext(), listOf(editEmail, editPassw))
         }
     }
 }

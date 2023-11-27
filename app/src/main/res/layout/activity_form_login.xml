@@ -12,8 +12,7 @@
         android:paddingStart="16dp"
         android:paddingEnd="16dp"
         android:orientation="vertical"
-        android:background="@color/light_gray"
-        tools:context=".ui.activities.FormSignInActivity">
+        android:background="@color/light_gray">
 
 
         <TextView android:id="@+id/login_txt_head"

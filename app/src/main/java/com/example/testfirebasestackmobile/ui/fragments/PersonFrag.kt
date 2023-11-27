@@ -8,14 +8,11 @@ import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
 import com.example.testfirebasestackmobile.R
 import com.example.testfirebasestackmobile.core.helpers.BlankBarrier
+import com.example.testfirebasestackmobile.core.helpers.KeyboardHider
+import com.example.testfirebasestackmobile.core.singletons.ConstRepo
 import com.example.testfirebasestackmobile.databinding.FragPersonBinding
 
 class PersonFrag : Fragment() {
-
-    companion object {
-        const val FIRST_NAME_KEY = "first name"
-        const val SECOND_NAME_KEY = "second name"
-    }
 
     private val binding by lazy {
         FragPersonBinding.inflate(layoutInflater)
@@ -39,8 +36,8 @@ class PersonFrag : Fragment() {
                 fun nextStep() {
                     val bundle = Bundle()
                     with(bundle) {
-                        putString(FIRST_NAME_KEY, editFirstName.text.toString())
-                        putString(SECOND_NAME_KEY, editSecondName.text.toString())
+                        putString(ConstRepo.FIRST_NAME_KEY, editFirstName.text.toString())
+                        putString(ConstRepo.SECOND_NAME_KEY, editSecondName.text.toString())
                     }
 
                     val navController = findNavController()
@@ -61,6 +58,9 @@ class PersonFrag : Fragment() {
                     nextStep()
                 }
             }
+
+            val keyboardHider = KeyboardHider()
+            keyboardHider.use(requireContext(), listOf(editFirstName, editSecondName))
         }
     }
 }

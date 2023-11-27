@@ -21,6 +21,6 @@
 
     <Button android:id="@+id/fragperson_button_complete"
         style="@style/Theme.TestFirebaseStackMobile.SignIn.Button"
-        android:text="@string/button_sign_in_complete"/>
+        android:text="@string/button_sign_in_next"/>
 
 </LinearLayout>

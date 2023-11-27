@@ -8,10 +8,12 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
+import android.util.Log
 import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
 import androidx.activity.result.contract.ActivityResultContracts
 import com.example.testfirebasestackmobile.R
+import com.example.testfirebasestackmobile.core.singletons.Auth.auth
 import com.example.testfirebasestackmobile.databinding.ActivityFormLoginBinding
 import com.example.testfirebasestackmobile.ui.dialog.LoadingDialog
 import com.google.android.gms.auth.api.signin.GoogleSignIn
@@ -29,8 +31,6 @@ class FormLoginActivity : AppCompatActivity() {
     private val binding by lazy {
         ActivityFormLoginBinding.inflate(layoutInflater)
     }
-
-    private val auth = FirebaseAuth.getInstance()
 
     private lateinit var loginGoogleClient: GoogleSignInClient
 
@@ -77,8 +77,7 @@ class FormLoginActivity : AppCompatActivity() {
                     return@setOnClickListener
                 }
 
-                auth
-                    .signInWithEmailAndPassword(email.toString(), passw.toString())
+                auth.signInWithEmailAndPassword(email.toString(), passw.toString())
                     .addOnCompleteListener { authentication ->
                         if (authentication.isSuccessful) {
                             goToAnotherView(MainViewActivity::class.java)
@@ -106,6 +105,7 @@ class FormLoginActivity : AppCompatActivity() {
             }
 
             loginLinlayParent.setOnClickListener {
+                Log.i("Login", "chegou")
                 fun hideKeyboard(editText: EditText) {
                     val rect = Rect()
 
