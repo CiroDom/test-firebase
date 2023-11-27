@@ -7,8 +7,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
 import com.example.testfirebasestackmobile.R
-import com.example.testfirebasestackmobile.core.helpers.BlankBarrier
-import com.example.testfirebasestackmobile.core.helpers.KeyboardHider
+import com.example.testfirebasestackmobile.core.utils.BlankBarrier
+import com.example.testfirebasestackmobile.core.utils.KeyboardHider
 import com.example.testfirebasestackmobile.core.singletons.ConstRepo
 import com.example.testfirebasestackmobile.databinding.FragPersonBinding
 
@@ -44,10 +44,9 @@ class PersonFrag : Fragment() {
                     navController.navigate(R.id.nav_act_person_to_account, bundle)
                 }
 
-                val blankBarrier = BlankBarrier()
 
                 val canItPass =
-                    blankBarrier.canItPass(
+                    BlankBarrier.canItPass(
                         requireContext(),
                         button,
                         editFirstName,
@@ -58,9 +57,6 @@ class PersonFrag : Fragment() {
                     nextStep()
                 }
             }
-
-            val keyboardHider = KeyboardHider()
-            keyboardHider.use(requireContext(), listOf(editFirstName, editSecondName))
         }
     }
 }

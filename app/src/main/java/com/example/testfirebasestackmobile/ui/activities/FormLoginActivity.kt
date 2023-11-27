@@ -8,12 +8,12 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
-import android.util.Log
 import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
 import androidx.activity.result.contract.ActivityResultContracts
 import com.example.testfirebasestackmobile.R
 import com.example.testfirebasestackmobile.core.singletons.Auth.auth
+import com.example.testfirebasestackmobile.core.utils.KeyboardHider
 import com.example.testfirebasestackmobile.databinding.ActivityFormLoginBinding
 import com.example.testfirebasestackmobile.ui.dialog.LoadingDialog
 import com.google.android.gms.auth.api.signin.GoogleSignIn
@@ -105,26 +105,7 @@ class FormLoginActivity : AppCompatActivity() {
             }
 
             loginLinlayParent.setOnClickListener {
-                fun hideKeyboard(editText: EditText) {
-                    val rect = Rect()
-
-                    editText.getGlobalVisibleRect(rect)
-
-                    if (
-                        !rect.contains(editText.x.toInt(), editText.y.toInt())
-                    ) {
-                        val inputMethodManager =
-                            getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
-                        inputMethodManager.hideSoftInputFromWindow(editText.windowToken, 0)
-                    }
-                }
-
-                if (editEmail.isFocused) {
-                    hideKeyboard(editEmail)
-                }
-                else if (editPassw.isFocused) {
-                    hideKeyboard(editPassw)
-                }
+                KeyboardHider.hideKeyboard(this@FormLoginActivity)
             }
         }
     }

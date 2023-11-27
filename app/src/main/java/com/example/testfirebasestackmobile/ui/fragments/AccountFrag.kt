@@ -7,13 +7,11 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
 import com.example.testfirebasestackmobile.R
-import com.example.testfirebasestackmobile.core.helpers.BlankBarrier
-import com.example.testfirebasestackmobile.core.helpers.KeyboardHider
-import com.example.testfirebasestackmobile.core.helpers.OurSnackBar
-import com.example.testfirebasestackmobile.core.singletons.Auth
+import com.example.testfirebasestackmobile.core.utils.BlankBarrier
+import com.example.testfirebasestackmobile.core.utils.KeyboardHider
+import com.example.testfirebasestackmobile.core.utils.OurSnackBar
 import com.example.testfirebasestackmobile.core.singletons.Auth.auth
 import com.example.testfirebasestackmobile.core.singletons.ConstRepo
-import com.example.testfirebasestackmobile.core.singletons.Database
 import com.example.testfirebasestackmobile.core.singletons.Database.db
 import com.example.testfirebasestackmobile.databinding.FragAccountBinding
 import com.google.firebase.FirebaseNetworkException
@@ -49,8 +47,7 @@ class AccountFrag : Fragment() {
                     auth.createUserWithEmailAndPassword(email.toString(), passw.toString())
                         .addOnCompleteListener { createUserTask ->
                             if (createUserTask.isSuccessful) {
-                                val ourSnackBar = OurSnackBar()
-                                ourSnackBar.show(
+                                OurSnackBar.show(
                                     requireContext(),
                                     button,
                                     R.string.snackbar_sucess_sign_in,
@@ -69,7 +66,7 @@ class AccountFrag : Fragment() {
                                     .document(user?.uid ?: "")
                                     .set(personalData)
                                     .addOnFailureListener {
-                                        ourSnackBar.show(
+                                        OurSnackBar.show(
                                             requireContext(),
                                             button,
                                             R.string.snackbar_fail_personal_data,
@@ -90,8 +87,7 @@ class AccountFrag : Fragment() {
                                 else -> R.string.snackbar_fail_generic
                             }
 
-                            val ourSnackBar = OurSnackBar()
-                            ourSnackBar.show(
+                            OurSnackBar.show(
                                 requireContext(),
                                 button,
                                 errorMsgInt,
@@ -100,9 +96,8 @@ class AccountFrag : Fragment() {
                         }
                 }
 
-                val blankBarrier = BlankBarrier()
 
-                if (blankBarrier.canItPass(
+                if (BlankBarrier.canItPass(
                         requireContext(),
                         button,
                         editEmail,
@@ -112,9 +107,6 @@ class AccountFrag : Fragment() {
                     authenticate()
                 }
             }
-
-            val keyboardHider = KeyboardHider()
-            keyboardHider.use(requireContext(), listOf(editEmail, editPassw))
         }
     }
 }
