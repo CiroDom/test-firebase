@@ -1,21 +1,21 @@
-package com.example.testfirebasestackmobile.ui.activities
+package com.example.testfirebasestackmobile.ui.form_login
 
-import android.content.Context
 import android.content.Intent
 import android.graphics.Color
-import android.graphics.Rect
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
-import android.view.inputmethod.InputMethodManager
-import android.widget.EditText
 import androidx.activity.result.contract.ActivityResultContracts
 import com.example.testfirebasestackmobile.R
 import com.example.testfirebasestackmobile.core.singletons.Auth.auth
+import com.example.testfirebasestackmobile.core.utils.ActvChanger
 import com.example.testfirebasestackmobile.core.utils.KeyboardHider
 import com.example.testfirebasestackmobile.databinding.ActivityFormLoginBinding
+import com.example.testfirebasestackmobile.ui.main_view.MainViewActivity
 import com.example.testfirebasestackmobile.ui.dialog.LoadingDialog
+import com.example.testfirebasestackmobile.ui.forgot_passw.ForgotPasswActivity
+import com.example.testfirebasestackmobile.ui.form_sign_in.FormSignInActivity
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
@@ -80,7 +80,7 @@ class FormLoginActivity : AppCompatActivity() {
                 auth.signInWithEmailAndPassword(email.toString(), passw.toString())
                     .addOnCompleteListener { authentication ->
                         if (authentication.isSuccessful) {
-                            goToAnotherView(MainViewActivity::class.java)
+                            ActvChanger.use(this@FormLoginActivity, MainViewActivity::class.java, true)
                         }
                     }.addOnFailureListener { exception ->
                         val errorMsgInt = when (exception) {
@@ -93,11 +93,11 @@ class FormLoginActivity : AppCompatActivity() {
             }
 
             loginTxtNoAcc.setOnClickListener {
-                goToAnotherView(FormSignInActivity::class.java)
+                ActvChanger.use(this@FormLoginActivity, FormSignInActivity::class.java, false)
             }
 
             loginTxtForgetPassw.setOnClickListener {
-                goToAnotherView(ForgotPasswActivity::class.java)
+                ActvChanger.use(this@FormLoginActivity, ForgotPasswActivity::class.java, false)
             }
 
             loginButtonSigninGoogle.setOnClickListener {
@@ -105,7 +105,7 @@ class FormLoginActivity : AppCompatActivity() {
             }
 
             loginLinlayParent.setOnClickListener {
-                KeyboardHider.hideKeyboard(this@FormLoginActivity)
+                KeyboardHider.use(this@FormLoginActivity)
             }
         }
     }
@@ -116,19 +116,8 @@ class FormLoginActivity : AppCompatActivity() {
         val currentUser = FirebaseAuth.getInstance().currentUser
 
         if (currentUser != null) {
-            goToAnotherView(MainViewActivity::class.java)
+            ActvChanger.use(this, MainViewActivity::class.java, true)
         }
-    }
-
-    private fun goToAnotherView(destiny: Class<*>) {
-        dialog.showAlertDialog()
-
-        Handler(Looper.getMainLooper()).postDelayed({
-            dialog.dismissAlertDialog()
-
-            val intent = Intent(this@FormLoginActivity, destiny)
-            startActivity(intent)
-        }, 500)
     }
 
     private fun googleSigninOptions() {
@@ -153,7 +142,7 @@ class FormLoginActivity : AppCompatActivity() {
 
         auth.signInWithCredential(credential).addOnCompleteListener { authentication ->
             if (authentication.isSuccessful) {
-                goToAnotherView(MainViewActivity::class.java)
+                ActvChanger.use(this, MainViewActivity::class.java, true)
             }
         }
     }

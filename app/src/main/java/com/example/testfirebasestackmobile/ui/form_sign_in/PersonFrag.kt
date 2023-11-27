@@ -1,4 +1,4 @@
-package com.example.testfirebasestackmobile.ui.fragments
+package com.example.testfirebasestackmobile.ui.form_sign_in
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -32,7 +32,7 @@ class PersonFrag : Fragment() {
             val editFirstName = fragpersonEditFirstname
             val editSecondName = fragpersonEditSecondname
 
-            fragpersonButtonComplete.setOnClickListener { button ->
+            fragpersonButtonNext.setOnClickListener { button ->
                 fun nextStep() {
                     val bundle = Bundle()
                     with(bundle) {

@@ -6,14 +6,14 @@
     app:startDestination="@id/nav_person">
 
     <fragment android:id="@+id/nav_person"
-        android:name="com.example.testfirebasestackmobile.ui.fragments.PersonFrag"
+        android:name="com.example.testfirebasestackmobile.ui.form_sign_in.PersonFrag"
         tools:layout="@layout/frag_person">
         <action android:id="@+id/nav_act_person_to_account"
             app:destination="@id/nav_account"/>
     </fragment>
 
     <fragment android:id="@+id/nav_account"
-        android:name="com.example.testfirebasestackmobile.ui.fragments.AccountFrag"
+        android:name="com.example.testfirebasestackmobile.ui.form_sign_in.AccountFrag"
         tools:layout="@layout/frag_account"/>
 
 </navigation>

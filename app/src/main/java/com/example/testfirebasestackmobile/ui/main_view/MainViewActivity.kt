@@ -1,10 +1,11 @@
-package com.example.testfirebasestackmobile.ui.activities
+package com.example.testfirebasestackmobile.ui.main_view
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
+import com.example.testfirebasestackmobile.core.utils.ActvChanger
 import com.example.testfirebasestackmobile.databinding.ActivityMainViewBinding
+import com.example.testfirebasestackmobile.ui.form_login.FormLoginActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 
@@ -14,7 +15,6 @@ class MainViewActivity : AppCompatActivity() {
         ActivityMainViewBinding.inflate(layoutInflater)
     }
 
-    private val db = FirebaseFirestore.getInstance()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
@@ -22,9 +22,7 @@ class MainViewActivity : AppCompatActivity() {
         with(binding) {
             mainviewButtonExit.setOnClickListener {
                 FirebaseAuth.getInstance().signOut()
-                val intent = Intent(this@MainViewActivity, FormLoginActivity::class.java)
-                startActivity(intent)
-                finish()
+                ActvChanger.use(this@MainViewActivity, FormLoginActivity::class.java, true)
             }
         }
     }

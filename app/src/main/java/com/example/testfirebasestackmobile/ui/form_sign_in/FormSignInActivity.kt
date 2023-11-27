@@ -1,15 +1,9 @@
-package com.example.testfirebasestackmobile.ui.activities
+package com.example.testfirebasestackmobile.ui.form_sign_in
 
-import android.content.Context
-import android.graphics.Rect
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.View
-import android.view.inputmethod.InputMethodManager
-import android.widget.EditText
 import com.example.testfirebasestackmobile.core.utils.KeyboardHider
 import com.example.testfirebasestackmobile.databinding.ActivityFormSignInBinding
-import com.example.testfirebasestackmobile.databinding.FragPersonBinding
 
 class FormSignInActivity : AppCompatActivity() {
 
@@ -24,7 +18,7 @@ class FormSignInActivity : AppCompatActivity() {
         val parentLay = binding.singInLinlayParent
 
         parentLay.setOnClickListener {
-            KeyboardHider.hideKeyboard(this)
+            KeyboardHider.use(this)
         }
     }
 }

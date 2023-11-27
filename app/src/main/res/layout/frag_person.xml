@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="@color/light_gray"
-    tools:context=".ui.activities.FormSignInActivity">
+    tools:context=".ui.form_sign_in.FormSignInActivity">
 
     <EditText android:id="@+id/fragperson_edit_firstname"
         style="@style/Theme.TestFirebaseStackMobile.SignIn.Edit"
@@ -19,7 +19,7 @@
         android:inputType="textPersonName"
         android:hint="@string/hint_secondname"/>
 
-    <Button android:id="@+id/fragperson_button_complete"
+    <Button android:id="@+id/fragperson_button_next"
         style="@style/Theme.TestFirebaseStackMobile.SignIn.Button"
         android:text="@string/button_sign_in_next"/>
 

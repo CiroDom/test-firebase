@@ -1,4 +1,4 @@
-package com.example.testfirebasestackmobile.ui.fragments
+package com.example.testfirebasestackmobile.ui.form_sign_in
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -8,7 +8,6 @@ import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
 import com.example.testfirebasestackmobile.R
 import com.example.testfirebasestackmobile.core.utils.BlankBarrier
-import com.example.testfirebasestackmobile.core.utils.KeyboardHider
 import com.example.testfirebasestackmobile.core.utils.OurSnackBar
 import com.example.testfirebasestackmobile.core.singletons.Auth.auth
 import com.example.testfirebasestackmobile.core.singletons.ConstRepo
@@ -39,7 +38,7 @@ class AccountFrag : Fragment() {
             val editEmail = fragaccEditEmail
             val editPassw = fragaccEditPassw
 
-            fragaccButtonNext.setOnClickListener { button ->
+            fragaccButtonComplete.setOnClickListener { button ->
                 val email = editEmail.text
                 val passw = editPassw.text
 
@@ -63,8 +62,16 @@ class AccountFrag : Fragment() {
                                 )
 
                                 db.collection(ConstRepo.USER_COLLECTION_KEY)
-                                    .document(user?.uid ?: "")
+                                    .document(user!!.uid)
                                     .set(personalData)
+                                    .addOnCompleteListener {
+                                        OurSnackBar.show(
+                                            requireContext(),
+                                            button,
+                                            R.string.snackbar_sucess_db_persondata,
+                                            false
+                                        )
+                                    }
                                     .addOnFailureListener {
                                         OurSnackBar.show(
                                             requireContext(),
@@ -74,8 +81,7 @@ class AccountFrag : Fragment() {
                                         )
                                     }
 
-                                val navController = findNavController()
-                                navController.navigate(R.id.nav_act_person_to_account)
+
                             }
                         }
                         .addOnFailureListener { exception ->
