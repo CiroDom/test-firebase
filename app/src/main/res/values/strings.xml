@@ -30,7 +30,7 @@
     <string name="snackbar_fail_generic">Erro desconhecido</string>
     <string name="snackbar_fail_generic_auth">Erro na autenticação</string>
     <string name="snackbar_fail_generic_forgot">Erro ao recuperar senha</string>
-    <string name="snackbar_fail_personal_data">Erro ao enviar dados pessoais</string>
+    <string name="snackbar_fail_db_personal_data">Erro ao enviar dados pessoais</string>
     <string name="snackbar_check_email">Verifique seu e-mail</string>
 
     <string name="dialog_text_loading">Carregando</string>

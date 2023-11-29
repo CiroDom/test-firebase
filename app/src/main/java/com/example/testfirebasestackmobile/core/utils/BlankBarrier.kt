@@ -7,12 +7,10 @@ import com.example.testfirebasestackmobile.R
 
 class BlankBarrier {
     companion object {
-        fun canItPass(context: Context, view: View, vararg edits: EditText) : Boolean {
+        fun canItPass(snackbar: OurSnackbar, vararg edits: EditText) : Boolean {
             edits.forEach { edit ->
                     if (edit.text.isBlank()) {
-                        OurSnackBar.show(
-                            context,
-                            view,
+                        snackbar.use(
                             R.string.snackbar_blank,
                             true
                         )

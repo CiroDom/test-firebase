@@ -5,18 +5,12 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.navigation.fragment.findNavController
 import com.example.testfirebasestackmobile.R
+import com.example.testfirebasestackmobile.core.singletons.Auth
 import com.example.testfirebasestackmobile.core.utils.BlankBarrier
-import com.example.testfirebasestackmobile.core.utils.OurSnackBar
-import com.example.testfirebasestackmobile.core.singletons.Auth.auth
-import com.example.testfirebasestackmobile.core.singletons.ConstRepo
-import com.example.testfirebasestackmobile.core.singletons.Database.db
+import com.example.testfirebasestackmobile.core.utils.OurSnackbar
+import com.example.testfirebasestackmobile.core.utils.ConstRepo
 import com.example.testfirebasestackmobile.databinding.FragAccountBinding
-import com.google.firebase.FirebaseNetworkException
-import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException
-import com.google.firebase.auth.FirebaseAuthUserCollisionException
-import com.google.firebase.auth.FirebaseAuthWeakPasswordException
 
 class AccountFrag : Fragment() {
 
@@ -42,75 +36,27 @@ class AccountFrag : Fragment() {
                 val email = editEmail.text
                 val passw = editPassw.text
 
-                fun authenticate() {
-                    auth.createUserWithEmailAndPassword(email.toString(), passw.toString())
-                        .addOnCompleteListener { createUserTask ->
-                            if (createUserTask.isSuccessful) {
-                                OurSnackBar.show(
-                                    requireContext(),
-                                    button,
-                                    R.string.snackbar_sucess_sign_in,
-                                    false
-                                )
+                val firstName = arguments?.getString(ConstRepo.FIRST_NAME_KEY)
+                val secondName = arguments?.getString(ConstRepo.SECOND_NAME_KEY)
+                val personData = mapOf<String, String?>(
+                    ConstRepo.FIRST_NAME_KEY to firstName,
+                    ConstRepo.SECOND_NAME_KEY to secondName
+                )
 
-                                val user = createUserTask.result.user
-                                val firstName = arguments?.getString(ConstRepo.FIRST_NAME_KEY)
-                                val secondName = arguments?.getString(ConstRepo.SECOND_NAME_KEY)
-                                val personalData = mapOf(
-                                    ConstRepo.FIRST_NAME_KEY to firstName,
-                                    ConstRepo.SECOND_NAME_KEY to secondName
-                                )
-
-                                db.collection(ConstRepo.USER_COLLECTION_KEY)
-                                    .document(user!!.uid)
-                                    .set(personalData)
-                                    .addOnCompleteListener {
-                                        OurSnackBar.show(
-                                            requireContext(),
-                                            button,
-                                            R.string.snackbar_sucess_db_persondata,
-                                            false
-                                        )
-                                    }
-                                    .addOnFailureListener {
-                                        OurSnackBar.show(
-                                            requireContext(),
-                                            button,
-                                            R.string.snackbar_fail_personal_data,
-                                            true,
-                                        )
-                                    }
-
-
-                            }
-                        }
-                        .addOnFailureListener { exception ->
-                            val errorMsgInt = when (exception) {
-                                is FirebaseAuthWeakPasswordException -> R.string.snackbar_fail_weakpassw_sign_in
-                                is FirebaseAuthInvalidCredentialsException -> R.string.snackbar_fail_invalid_credential
-                                is FirebaseAuthUserCollisionException -> R.string.snackbar_fail_collision_sign_in
-                                is FirebaseNetworkException -> R.string.snackbar_fail_conection
-                                else -> R.string.snackbar_fail_generic
-                            }
-
-                            OurSnackBar.show(
-                                requireContext(),
-                                button,
-                                errorMsgInt,
-                                true
-                            )
-                        }
-                }
-
+                val snackbar = OurSnackbar(requireContext(), button)
 
                 if (BlankBarrier.canItPass(
-                        requireContext(),
-                        button,
+                        snackbar,
                         editEmail,
                         editPassw,
                     )
                 ) {
-                    authenticate()
+                    Auth.createUserWithEmailAndPassword(
+                        email.toString(),
+                        passw.toString(),
+                        personData,
+                        snackbar
+                    )
                 }
             }
         }

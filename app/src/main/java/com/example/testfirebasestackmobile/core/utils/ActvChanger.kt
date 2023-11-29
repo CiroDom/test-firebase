@@ -12,7 +12,7 @@ import com.example.testfirebasestackmobile.ui.dialog.LoadingDialog
 class ActvChanger {
 
     companion object {
-        private fun goToAnotherView(activity: Activity, destiny: Class<*>) {
+        private fun goToAnotherActv(activity: Activity, destiny: Class<*>) {
             val intent = Intent(activity, destiny)
             activity.startActivity(intent)
         }
@@ -24,12 +24,12 @@ class ActvChanger {
                 Handler(Looper.getMainLooper()).postDelayed({
                     dialog.dismissAlertDialog()
 
-                    goToAnotherView(activity, destiny)
+                    goToAnotherActv(activity, destiny)
                     activity.finish()
                 }, 500)
             }
             else {
-                goToAnotherView(activity, destiny)
+                goToAnotherActv(activity, destiny)
             }
         }
     }

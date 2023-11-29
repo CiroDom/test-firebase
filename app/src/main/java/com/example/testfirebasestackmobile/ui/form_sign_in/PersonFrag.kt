@@ -8,8 +8,8 @@ import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
 import com.example.testfirebasestackmobile.R
 import com.example.testfirebasestackmobile.core.utils.BlankBarrier
-import com.example.testfirebasestackmobile.core.utils.KeyboardHider
-import com.example.testfirebasestackmobile.core.singletons.ConstRepo
+import com.example.testfirebasestackmobile.core.utils.ConstRepo
+import com.example.testfirebasestackmobile.core.utils.OurSnackbar
 import com.example.testfirebasestackmobile.databinding.FragPersonBinding
 
 class PersonFrag : Fragment() {
@@ -45,10 +45,10 @@ class PersonFrag : Fragment() {
                 }
 
 
+                val snackbar = OurSnackbar(requireContext(), button)
                 val canItPass =
                     BlankBarrier.canItPass(
-                        requireContext(),
-                        button,
+                        snackbar,
                         editFirstName,
                         editSecondName,
                     )

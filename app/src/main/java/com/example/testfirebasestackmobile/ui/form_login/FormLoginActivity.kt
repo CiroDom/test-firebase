@@ -8,9 +8,10 @@ import android.os.Handler
 import android.os.Looper
 import androidx.activity.result.contract.ActivityResultContracts
 import com.example.testfirebasestackmobile.R
-import com.example.testfirebasestackmobile.core.singletons.Auth.auth
+import com.example.testfirebasestackmobile.core.singletons.Auth
 import com.example.testfirebasestackmobile.core.utils.ActvChanger
 import com.example.testfirebasestackmobile.core.utils.KeyboardHider
+import com.example.testfirebasestackmobile.core.utils.OurSnackbar
 import com.example.testfirebasestackmobile.databinding.ActivityFormLoginBinding
 import com.example.testfirebasestackmobile.ui.main_view.MainViewActivity
 import com.example.testfirebasestackmobile.ui.dialog.LoadingDialog
@@ -77,19 +78,8 @@ class FormLoginActivity : AppCompatActivity() {
                     return@setOnClickListener
                 }
 
-                auth.signInWithEmailAndPassword(email.toString(), passw.toString())
-                    .addOnCompleteListener { authentication ->
-                        if (authentication.isSuccessful) {
-                            ActvChanger.use(this@FormLoginActivity, MainViewActivity::class.java, true)
-                        }
-                    }.addOnFailureListener { exception ->
-                        val errorMsgInt = when (exception) {
-                            is FirebaseNetworkException -> R.string.snackbar_fail_conection
-                            is FirebaseAuthInvalidCredentialsException -> R.string.snackbar_fail_invalid_credential
-                            else -> R.string.snackbar_fail_generic_auth
-                        }
-                        showErrorSnackBar(errorMsgInt)
-                    }
+                val snackbar = OurSnackbar(this@FormLoginActivity, button)
+                Auth.signInWithEmailAndPassword(email.toString(), passw.toString(), this@FormLoginActivity, snackbar)
             }
 
             loginTxtNoAcc.setOnClickListener {
@@ -140,10 +130,6 @@ class FormLoginActivity : AppCompatActivity() {
     private fun userGoogleAuthenticate(idToken: String) {
         val credential = GoogleAuthProvider.getCredential(idToken, null)
 
-        auth.signInWithCredential(credential).addOnCompleteListener { authentication ->
-            if (authentication.isSuccessful) {
-                ActvChanger.use(this, MainViewActivity::class.java, true)
-            }
-        }
+        Auth.signInWithCredential(credential, this)
     }
 }
