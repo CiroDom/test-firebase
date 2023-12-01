@@ -2,6 +2,7 @@ package com.example.testfirebasestackmobile.ui.main_view
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import com.example.testfirebasestackmobile.core.singletons.Auth
 import com.example.testfirebasestackmobile.core.singletons.Database
 import com.example.testfirebasestackmobile.core.utils.ActvChanger
@@ -20,15 +21,15 @@ class MainViewActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
-        with(binding) {
-            val userName =
-                Database.getUserPersonData(Auth.user, ConstRepo.FIRST_NAME_KEY) ?: "Usuário"
-            mainviewTxtFirstname.text = "Olá, $userName"
+        Database.getUserPersonData(
+            Auth.user,
+            ConstRepo.FIRST_NAME_KEY,
+            binding.mainviewTxtFirstname
+            )
 
-            mainviewButtonExit.setOnClickListener {
-                FirebaseAuth.getInstance().signOut()
-                ActvChanger.use(this@MainViewActivity, FormLoginActivity::class.java, true)
-            }
+        binding.mainviewButtonExit.setOnClickListener {
+            FirebaseAuth.getInstance().signOut()
+            ActvChanger.use(this@MainViewActivity, FormLoginActivity::class.java, true)
         }
     }
 }

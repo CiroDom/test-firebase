@@ -26,15 +26,17 @@ object Database {
             }
     }
 
-    fun getUserPersonData(user: FirebaseUser?, field: String): String? {
+    fun getUserPersonData(user: FirebaseUser?, field: String, txt: TextView) {
         val userDoc = db.collection(ConstRepo.USER_COLLECTION_KEY).document(user!!.uid)
 
-        var userPersondata: String? = ""
-        userDoc.addSnapshotListener { doc, error ->
-            doc.let { userPersondata = doc!!.getString(field) }
-        }
-
-        return userPersondata
+        userDoc.get()
+            .addOnSuccessListener { docSnapshot ->
+                val userName = docSnapshot.getString(field)!!
+                txt.text = "Olá, $userName"
+            }
+            .addOnFailureListener { exception ->
+                Log.e("db", "getUserException: $exception")
+            }
     }
 
 }
