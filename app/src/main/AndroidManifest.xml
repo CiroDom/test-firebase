@@ -15,6 +15,12 @@
         android:theme="@style/Theme.TestFirebaseStackMobile"
         tools:targetApi="31">
         <activity
+            android:name=".SingleNoteActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.notes.NotesActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.forgot_passw.ForgotPasswActivity"
             android:exported="false" />
         <activity

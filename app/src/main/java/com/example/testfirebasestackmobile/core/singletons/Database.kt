@@ -38,5 +38,4 @@ object Database {
                 Log.e("db", "getUserException: $exception")
             }
     }
-
 }

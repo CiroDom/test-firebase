@@ -9,6 +9,7 @@ import com.example.testfirebasestackmobile.core.utils.ActvChanger
 import com.example.testfirebasestackmobile.core.utils.ConstRepo
 import com.example.testfirebasestackmobile.databinding.ActivityMainViewBinding
 import com.example.testfirebasestackmobile.ui.form_login.FormLoginActivity
+import com.example.testfirebasestackmobile.ui.notes.NotesActivity
 import com.google.firebase.auth.FirebaseAuth
 
 class MainViewActivity : AppCompatActivity() {
@@ -27,9 +28,15 @@ class MainViewActivity : AppCompatActivity() {
             binding.mainviewTxtFirstname
             )
 
-        binding.mainviewButtonExit.setOnClickListener {
-            FirebaseAuth.getInstance().signOut()
-            ActvChanger.use(this@MainViewActivity, FormLoginActivity::class.java, true)
+        with(binding) {
+            mainviewButtonExit.setOnClickListener {
+                FirebaseAuth.getInstance().signOut()
+                ActvChanger.use(this@MainViewActivity, FormLoginActivity::class.java, true)
+            }
+
+            mainviewButtonNotesGo.setOnClickListener {
+                ActvChanger.use(this@MainViewActivity, NotesActivity::class.java, false)
+            }
         }
     }
 }

@@ -17,6 +17,7 @@
 
     <string name="button_login">Entrar</string>
     <string name="button_exit">Sair</string>
+    <string name="button_notes_go">Ir para as anotações</string>
     <string name="button_forgot">Recuperar senha</string>
 
     <string name="txt_no_acc">Não tem uma conta? Cadastre-se</string>

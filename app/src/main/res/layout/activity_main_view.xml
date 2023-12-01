@@ -29,5 +29,17 @@
         android:textSize="25sp"
         android:textColor="@color/black"
         android:textStyle="bold"/>
-    
+
+    <Button android:id="@+id/mainview_button_notes_go"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/mainview_button_exit"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_margin="24dp"
+        android:text="@string/button_notes_go"
+        android:textSize="25sp"
+        android:textColor="@color/black"
+        android:textStyle="bold"/>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
