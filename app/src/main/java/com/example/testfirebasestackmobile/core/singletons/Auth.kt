@@ -1,6 +1,7 @@
 package com.example.testfirebasestackmobile.core.singletons
 
 import android.app.Activity
+import android.util.Log
 import com.example.testfirebasestackmobile.R
 import com.example.testfirebasestackmobile.core.utils.ActvChanger
 import com.example.testfirebasestackmobile.core.utils.ConstRepo
@@ -12,10 +13,13 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException
 import com.google.firebase.auth.FirebaseAuthUserCollisionException
 import com.google.firebase.auth.FirebaseAuthWeakPasswordException
+import com.google.firebase.auth.FirebaseUser
 
 object Auth {
 
     private val auth = FirebaseAuth.getInstance()
+
+    val user = auth.currentUser
 
     fun createUserWithEmailAndPassword(email: String, passw: String, personData: Map<String, String?>, snackbar: OurSnackbar) {
         auth.createUserWithEmailAndPassword(email, passw)

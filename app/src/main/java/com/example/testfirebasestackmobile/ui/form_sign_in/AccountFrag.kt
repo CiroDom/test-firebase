@@ -5,12 +5,13 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.example.testfirebasestackmobile.R
 import com.example.testfirebasestackmobile.core.singletons.Auth
+import com.example.testfirebasestackmobile.core.utils.ActvChanger
 import com.example.testfirebasestackmobile.core.utils.BlankBarrier
 import com.example.testfirebasestackmobile.core.utils.OurSnackbar
 import com.example.testfirebasestackmobile.core.utils.ConstRepo
 import com.example.testfirebasestackmobile.databinding.FragAccountBinding
+import com.example.testfirebasestackmobile.ui.form_login.FormLoginActivity
 
 class AccountFrag : Fragment() {
 
@@ -32,10 +33,9 @@ class AccountFrag : Fragment() {
             val editEmail = fragaccEditEmail
             val editPassw = fragaccEditPassw
 
-            fragaccButtonComplete.setOnClickListener { button ->
-                val email = editEmail.text
-                val passw = editPassw.text
-
+            fragaccButtonSignin.setOnClickListener { button ->
+                val email = editEmail.text.toString()
+                val passw = editPassw.text.toString()
                 val firstName = arguments?.getString(ConstRepo.FIRST_NAME_KEY)
                 val secondName = arguments?.getString(ConstRepo.SECOND_NAME_KEY)
                 val personData = mapOf<String, String?>(
@@ -51,13 +51,22 @@ class AccountFrag : Fragment() {
                         editPassw,
                     )
                 ) {
-                    Auth.createUserWithEmailAndPassword(
-                        email.toString(),
-                        passw.toString(),
-                        personData,
-                        snackbar
-                    )
-                }
+                Auth.createUserWithEmailAndPassword(
+                    email,
+                    passw,
+                    personData,
+                    snackbar
+                )
+            }
+        }
+
+            fragaccButtonBack.setOnClickListener {
+                ActvChanger.use(
+                    requireActivity(),
+                    FormLoginActivity::class.java,
+                    false)
+
+                activity?.finish()
             }
         }
     }

@@ -62,23 +62,14 @@ class FormLoginActivity : AppCompatActivity() {
                 val email = editEmail.text
                 val passw = editPassw.text
 
-                fun showErrorSnackBar(getString: Int) {
-                    val snackBar =
-                        Snackbar.make(button, getString(getString), Snackbar.LENGTH_SHORT)
-
-                    with(snackBar) {
-                        setBackgroundTint(Color.RED)
-                        show()
-                    }
-                }
+                val snackbar = OurSnackbar(this@FormLoginActivity, button)
 
                 if (email.isBlank() || passw.isBlank()) {
-                    showErrorSnackBar(R.string.snackbar_blank)
+                    snackbar.use(R.string.snackbar_blank, true)
 
                     return@setOnClickListener
                 }
 
-                val snackbar = OurSnackbar(this@FormLoginActivity, button)
                 Auth.signInWithEmailAndPassword(email.toString(), passw.toString(), this@FormLoginActivity, snackbar)
             }
 

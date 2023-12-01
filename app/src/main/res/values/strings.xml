@@ -11,8 +11,10 @@
     <string name="hint_secondname">Sobrenome</string>
 
 
-    <string name="button_sign_in_complete">Cadastrar</string>
     <string name="button_sign_in_next">Próximo</string>
+    <string name="button_sign_in_signin">Cadastrar</string>
+    <string name="button_sign_in_back">Voltar para a página de login</string>
+
     <string name="button_login">Entrar</string>
     <string name="button_exit">Sair</string>
     <string name="button_forgot">Recuperar senha</string>

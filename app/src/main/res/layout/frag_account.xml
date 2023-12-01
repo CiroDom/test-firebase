@@ -19,8 +19,12 @@
         android:inputType="textPassword"
         android:hint="@string/hint_passw"/>
 
-    <Button android:id="@+id/fragacc_button_complete"
+    <Button android:id="@+id/fragacc_button_signin"
         style="@style/Theme.TestFirebaseStackMobile.SignIn.Button"
-        android:text="@string/button_sign_in_complete"/>
+        android:text="@string/button_sign_in_signin"/>
+
+    <Button android:id="@+id/fragacc_button_back"
+        style="@style/Theme.TestFirebaseStackMobile.SignIn.Button"
+        android:text="@string/button_sign_in_back"/>
 
 </LinearLayout>
